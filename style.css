@@ -73,7 +73,9 @@ select {
   }
 }
 
-h1{
+h1, 
+form{
     text-align: center;
     margin: 50px auto;
 }
+
