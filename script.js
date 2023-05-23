@@ -1,45 +1,54 @@
-console.log("Trial");
-
 const game = (function () {
   let secretNumber = Math.floor(Math.random() * 10) + 1;
   let counter = 0;
 
   // Cache Dom
-  const submitBtn = document.getElementById("submit-btn");
+  const guessForm = document.getElementById("guess-form");
+  const guessInput = document.getElementById("guess-input");
 
+  
   // Bind Events
-  submitBtn.addEventListener("click", getGuess);
+  guessForm.addEventListener("submit", playTurn);
 
-  function getGuess(e) {
+  
+  function playTurn(e){
     e.preventDefault();
+    let guess = getGuess();
+    gameLogic(guess);
+    
+    guessForm.reset();
+  }
+
+  function getGuess() {
     let guessInput = document.getElementById("guess-input").value;
     console.log("event lister working");
     console.log(guessInput);
-    
+    return guessInput
   }
 
-  //   gameLogic = () => {
-  //     if (counter < 5) {
-  //       if (userInput <= 0 || userInput > 10) {
-  //         console.log("Your input must be between 0-10");
-  //       } else if (userInput < secretNumber) {
-  //         console.log(`${userInputf} is too low`);
-  //         counter++;
-  //       } else if (userInput > secretNumber) {
-  //         console.log(`${userInput} is too High`);
-  //         counter++;
-  //       } else if (userInput === secretNumber) {
-  //         console.log(`You got it!`);
-  //       } else if (!Number.isInteger(userInput)) {
-  //         console.log("Must input a number");
-  //       }
-  //     } else if (counter === 5) {
-  //       console.log("Gmae Over");
-  //     } else console.log("Good Job");
-  //   };
+    function gameLogic(guess) {
+      if (guess < secretNumber) {
+        console.log(`${guess} is too low`);
+        counter++;
+        (counter === 5)? console.log("Gmae Over"):console.log("Try Again");
+      } else if (guess > secretNumber) {
+        console.log(`${guess} is too High`);
+        counter++;
+        (counter === 5)? console.log("Gmae Over"):console.log("Try Again");
+      } else if (guess === secretNumber) {
+        console.log(`You got it!`);
+      }
+    };
+
+    function win(){
+
+    }
+
+    function gameOver(){
+
+    }    
 
   return {
-    secretNumber,
-    // users
+
   };
 })();
