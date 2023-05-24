@@ -4,7 +4,6 @@ const game = (function () {
   let counter = 0;
   let wrongGuesses = [];
 
-
   // Cache Dom
   const guessForm = document.getElementById("guess-form");
   const guessInput = document.getElementById("guess-input");
@@ -16,80 +15,90 @@ const game = (function () {
 
   // Bind Events
   guessForm.addEventListener("submit", playTurn);
-  newGameBtns.forEach(btn => btn.addEventListener("click", newGame)); 
+  newGameBtns.forEach((btn) => btn.addEventListener("click", newGame));
 
-  
-  function playTurn(e){
+  function playTurn(e) {
     e.preventDefault();
-    if (counter<5){
+    if (counter < 5) {
       let guess = getGuess();
       gameLogic(guess);
     }
-    
     guessForm.reset();
   }
 
   function getGuess() {
     let guessInput = document.getElementById("guess-input").value;
-    console.log("event lister working");
-    return guessInput
+    return guessInput;
   }
 
-    function gameLogic(guess) {
-      if (guess<secretNumber || guess>secretNumber) {
-        counter++;
-        (counter === 5)? gameOver(): pushGuess(guess);
-      } else if (guess === secretNumber) {
-        console.log("You won")
-        win()
+  function gameLogic(guess) {
+    if (guess < secretNumber || guess > secretNumber) {
+      counter++;
+      counter === 5 ? gameOver(guess) : pushGuess(guess);
+    } else if (guess == secretNumber) {
+      win(guess);
+    }
+  }
+
+  function win(guess) {
+    secretNumberCell.innerText=guess
+    secretNumberCell.classList.add("jump")
+    winPopup.style.display="block";
+  }
+
+  function gameOver(guess) {
+    console.log("Game Over");
+    pushGuess(guess);
+    gameOverPopup.style.display = "block";
+  }
+
+  function renderGuesses(guess) {
+    removeCells();
+    wrongGuesses.forEach((number) => {
+      if (number < secretNumber) {
+        let newCell = createElements(number);
+        guessChart.insertBefore(newCell, secretNumberCell);
+      } else if (number > secretNumber) {
+        let newCell = createElements(number);
+        guessChart.append(newCell);
       }
-    };
+    });
+  }
 
-    function win(){
-      console.log("You won")
+  function pushGuess(guess) {
+    if (!wrongGuesses.includes(guess)) {
+      wrongGuesses.push(guess);
+      wrongGuesses.sort();
+      renderGuesses(guess);
+    }else {
+      // const existingCells = document.querySelector("[data-number=guess]")
+      let existingCell = document.getElementById(guess);
+      existingCell.classList.add("jump")
     }
+  }
 
-    function gameOver(){
-      console.log("Game Over")
-      gameOverPopup.style.display = "block";
-    }
-    
-    function renderGuesses(guess){
-      let newCell = document.createElement("div");
-      let newGuess = document.createElement("p");
-      newCell.classList.add("guess-cell","cell")
-      newGuess.classList.add("guess")
-      newGuess.innerText= guess;
-      newCell.append(newGuess)
-      debugger
-      wrongGuesses.forEach(number =>{
-        if(number<secretNumber){
-          // secretNumberCell.before(newCell);
-          guessChart.insertBefore(newCell, secretNumberCell);
-        }
-        else if (number>secretNumber){
-          // guessChart.appendChild(newCell);
-          // secretNumberCell.after(newCell);
-          guessChart.append(newCell);
-        }
-      })
+  function newGame() {
+    location.reload()
+  }
 
-    };
+  function removeCells() {
+    const cells = Array.from(document.querySelectorAll(".guess-cell"));
+    console.log(cells);
+    cells.forEach((cell) => cell.remove());
+  }
 
-    function pushGuess(guess){
-      if(!wrongGuesses.includes(guess)){
-        wrongGuesses.push(guess);
-        wrongGuesses.sort();
-        renderGuesses(guess)
-      } 
-      console.log(wrongGuesses);
-    };
+  function createElements(number) {
+    let newCell = document.createElement("div");
+    newCell.classList.add("guess-cell", "cell", number);
+    newCell.setAttribute("id", number);
 
-    function newGame(){
-      console.log("New Game")
-    }
+    let newGuess = document.createElement("p");
+    newGuess.classList.add("guess");
+    newGuess.innerText = number;
 
-  return {
+    newCell.append(newGuess);
+    return newCell;
+  }
 
-  };
+  return {};
 })();

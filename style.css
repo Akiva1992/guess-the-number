@@ -74,14 +74,14 @@ select {
   }
 }
 
-#submit-btn{
+.btn{
   /* padding: 0.2rem 0.5rem; */
   border-radius: 6px;
   border: 0.2px solid black;
 
 }
 
-#submit-btn:hover{
+.btn:hover{
   opacity: 0.8;
 }
 
@@ -121,3 +121,41 @@ form{
   border: 0.2px solid black;
 }
 
+
+/* The animation code */
+@keyframes slidein {
+  0%{
+    transform: translatey(0%);
+  }
+
+  50% {
+    transform: translatey(-20%);
+  }
+
+  60%{
+    transform: translatey(-10%);
+  }
+
+  70%{
+    transform: translatey(0%);
+  }
+
+  80%{
+    transform: translatey(-5%);
+  }
+
+  100%{
+    transform: translatey(0%);
+  }
+}
+
+/* The element to apply the animation to */
+div.jump {
+  /* width: 100px; */
+  /* height: 100px; */
+  /* background-color: red; */
+  animation-name: slidein;
+  animation-duration: 2s;
+  animation-iteration-count: 5;
+  animation-timing-function: ease-out;
+}
