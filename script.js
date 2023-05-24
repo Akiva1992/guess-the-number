@@ -5,16 +5,22 @@ const game = (function () {
   // Cache Dom
   const guessForm = document.getElementById("guess-form");
   const guessInput = document.getElementById("guess-input");
+  const guessChart = document.querySelector("#guess-chart");
+  const gameOverPopup = document.querySelector("#game-over-popup");
+  const winPopup = document.querySelector("#win-popup");
+  const newGameBtns = Array.from(document.querySelectorAll(".new-game-btn"));
 
-  
   // Bind Events
   guessForm.addEventListener("submit", playTurn);
+  newGameBtns.forEach(btn => btn.addEventListener("click", newGame)); 
 
   
   function playTurn(e){
     e.preventDefault();
-    let guess = getGuess();
-    gameLogic(guess);
+    if (counter<5){
+      let guess = getGuess();
+      gameLogic(guess);
+    }
     
     guessForm.reset();
   }
@@ -30,13 +36,13 @@ const game = (function () {
       if (guess < secretNumber) {
         console.log(`${guess} is too low`);
         counter++;
-        (counter === 5)? console.log("Gmae Over"):console.log("Try Again");
+        (counter === 5)? gameOver(): newTurn();
       } else if (guess > secretNumber) {
         console.log(`${guess} is too High`);
         counter++;
-        (counter === 5)? console.log("Gmae Over"):console.log("Try Again");
+        (counter === 5)? gameOver():newTurn();
       } else if (guess === secretNumber) {
-        console.log(`You got it!`);
+        win()
       }
     };
 
@@ -45,8 +51,16 @@ const game = (function () {
     }
 
     function gameOver(){
+      console.log("Game Over")
+    }
+    
+    function newTurn(){
+    }
 
-    }    
+    function newGame(){
+      console.log("New Game")
+
+    }
 
   return {
 

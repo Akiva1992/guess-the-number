@@ -1,20 +1,38 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./style.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./style.css" />
     <title>Guess the Number</title>
-</head>
-<body>
+  </head>
+  <body>
     <h1>Guess the Number</h1>
     <form action="" target="" id="guess-form">
-        <label for="guess-input">Enter Your Guess</label>
-        <input  type="number" id="guess-input" name="guess-input" min="1" max="10" required>
-        <input type="submit" value="Enter" id="submit-btn">
-        <!-- <button type="submit" id="submit-btn">Enter</button> -->
+      <label for="guess-input">Enter Your Guess</label>
+      <input
+        type="number"
+        id="guess-input"
+        name="guess-input"
+        min="1"
+        max="10"
+        required
+      />
+      <input type="submit" value="Enter" id="submit-btn" class="btn" />
+      <input type="button" value="New Game" id="new-game-btn1" class="new-game-btn btn" />
     </form>
+    <div id="guess-chart">
+      <div class="secret-number-cell">?</div>
+    </div>
+    <div id="game-over-popup" style="display: none">
+      <h1 class="game-over-msg">Game Over :(</h1>
+      <input type="button" value="New Game" id="new-game-btn2" class="new-game-btn btn" />
+    </div>
+    <div id="win-popup" style="display: none">
+        <h1 class="win-msg">Good Job :)</h1>
+        <input type="button" value="New Game" id="new-game-btn3" class="new-game-btn btn" />
+      </div>
     <script src="./script.js"></script>
-</body>
+  </body>
 </html>
