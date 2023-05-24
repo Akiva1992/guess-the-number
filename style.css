@@ -97,6 +97,19 @@ input[type=number] {
   -moz-appearance: textfield;
 }
 
+#guess-chart{
+  display: flex;
+  width: fit-content;
+  margin:auto;
+  /* gap: 1rem; */
+}
+
+.cell{
+  border: 0.2px black solid;
+  border-radius: 6px;
+  padding: 1rem;
+}
+
 h1, 
 form{
     text-align: center;
