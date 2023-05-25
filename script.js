@@ -12,13 +12,45 @@ const game = (function () {
   const secretNumberCell = document.querySelector(".secret-number-cell");
   const winPopup = document.querySelector("#win-popup");
   const newGameBtns = Array.from(document.querySelectorAll(".new-game-btn"));
+  const error = document.querySelector(".error");
 
   // Bind Events
-  guessForm.addEventListener("submit", playTurn);
+  // guessForm.addEventListener("submit", playTurn);
+  guessForm.addEventListener("submit", checkValidety);
   newGameBtns.forEach((btn) => btn.addEventListener("click", newGame));
 
-  function playTurn(e) {
-    e.preventDefault();
+
+  function checkValidety(e){
+      if (!guessInput.validity.valid) {
+        e.preventDefault()
+        showError();
+      }  
+      
+      else {
+        e.preventDefault()
+        playTurn();
+      }
+  };
+
+  function showError(){
+    if (guessInput.validity.valueMissing){
+      error.textContent="⋰ You must input a Number.";
+      error.style.display="block";
+      guessForm.reset();
+    } else if (guessInput.validity.rangeOverflow){
+      error.textContent="";
+      error.textContent="⋰ Number must be smaller than 11";
+      error.style.display="block";
+      guessForm.reset();
+    } else if (guessInput.validity.rangeUnderflow){
+      error.textContent="";
+      error.textContent="⋰ Number must be bigger than 0";
+      error.style.display="block";
+      guessForm.reset();
+    }
+  }
+
+  function playTurn() {
     if (counter < 5) {
       let guess = getGuess();
       gameLogic(guess);

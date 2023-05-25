@@ -105,7 +105,7 @@ input[type=number] {
 
 /* General classes*/
 .btn{
-  padding: 0.2rem 0.5rem;
+  padding: var(--tiny) var(--small);
   border-radius: var(--border-radius);
   border: var(--border);
   width: fit-content;
@@ -186,6 +186,7 @@ h1.title{
 }
 
 form{
+  position: relative;
   display: flex;
   flex-direction: column;
   border: var(--border);
@@ -193,6 +194,7 @@ form{
   align-items: center;
   padding: var(--medium);
   gap: var(--small);
+  min-height: 200px;
 }
 
 .guess-input-lable{
@@ -210,6 +212,44 @@ form{
 
 #guess-input:focus{
   outline: var(--secondery-border);
+}
+
+.error{
+  border: var(--border);
+  border-radius: 2px;
+  padding: var(--tiny);
+  font-size: var(--large);
+  animation: fadeIn 1.5s, shake 2s infinite;
+  animation-direction: alternate;
+  animation-timing-function: ease-in-out;
+}
+
+@keyframes shake {
+  0% {
+    transform: skewY(2.5deg);
+  }
+  100% {
+    transform: skewY(-2.5deg);
+  }
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.form-btns{
+  padding: var(--small) var(--medium);
+  position: absolute;
+  bottom: 5%;
+}
+
+#submit-btn{
+  margin: auto;
 }
 
 #guess-chart{

@@ -24,7 +24,7 @@
           />
     </div>
     <div class="main">
-        <form action="" target="" id="guess-form">
+        <form action="" target="" id="guess-form" novalidate>
             <label for="guess-input"><span class="guess-input-lable">Enter Your Guess Here</span></label>
             <input
             type="number"
@@ -34,8 +34,10 @@
           max="10"
           required
           />
+          <span class="error w3-animate-opacity" aria-live="polite" style="display: none;"></span>
           <div class="form-btns">
-          <input type="submit" value="Enter" id="submit-btn" class="btn" />
+          <!-- <input type="submit" value="Enter" id="submit-btn" class="btn" /> -->
+          <button value="Enter" id="submit-btn" class="btn">Try your Guess</button>
         </div>
     </form>
     <div id="guess-chart">
