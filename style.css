@@ -225,6 +225,7 @@ form{
   border: var(--border);
   border-radius: 2px;
   padding: var(--tiny);
+  margin-top: var(--small);
   font-size: calc(var(--fs-small) + 0.1vw);
   animation: fadeIn 1.5s, shake 2s infinite;
   animation-direction: alternate;
@@ -392,7 +393,7 @@ footer{
 
 @media (min-width:615px) {
   .main{
-    margin: 8% auto;
+    margin: 6% auto;
     max-width: 30vw;
   }
   form{
@@ -406,6 +407,6 @@ footer{
 
 @media (min-width:1280px) {
   .main{
-    margin: 5% auto;
+    margin: 1% auto;
   }
 }
