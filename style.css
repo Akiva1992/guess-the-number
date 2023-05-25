@@ -33,9 +33,7 @@ html:focus-within {
 /* Set core body defaults */
 body {
   min-height: 100vh;
-  text-rendering: optimizeSpeed;
   line-height: 1.5;
-  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 
 /* A elements that don't have a class get default styles */
@@ -58,6 +56,18 @@ select {
   font: inherit;
 }
 
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
 /* Remove all animations, transitions and smooth scroll for people that prefer not to see them */
 @media (prefers-reduced-motion: reduce) {
   html:focus-within {
@@ -74,56 +84,154 @@ select {
   }
 }
 
-.btn{
-  /* padding: 0.2rem 0.5rem; */
-  border-radius: 6px;
-  border: 0.2px solid black;
+:root {
+  --ff:'Work Sans', sans-serif;
 
+  --border:0.8px var(--accent-clr) solid;
+  --secondery-border:2px var(--accent-clr) solid;
+
+  --border-radius:6px;
+
+  --accent-clr: #334a5260;
+  --main-clr: #ffffff;
+  --secondery-clr: #7DB3C6;
+
+  --tiny:0.2rem;
+  --small:0.5rem;
+  --medium:0.8rem;
+  --large:1rem;
+  --xlarge:1.5rem;
+}
+
+/* General classes*/
+.btn{
+  padding: 0.2rem 0.5rem;
+  border-radius: var(--border-radius);
+  border: var(--border);
+  width: fit-content;
+  background-color: var(--main-clr);
+  color: var(--secondery-clr);
+  
 }
 
 .btn:hover{
   opacity: 0.8;
 }
 
-/* Chrome, Safari, Edge, Opera */
-input::-webkit-outer-spin-button,
-input::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
+.popup{
+  position: absolute;
+  /* top: 50%; 
+  left: 50%; 
+
+  transform: translate(-50%, -50%);  */
+  top: 0;
+  left: 10%;
+
+  width: fit-content;
+  min-width: 80%;
+  padding: var(--xlarge);
+
+  border: var(--border);
+  border-radius: var(--border-radius);
+  
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center; 
+  gap: var(--xlarge);
+  backdrop-filter: blur(10px);
+  }
+
+.cell{
+  border: var(--border);
+  border-radius: var(--border-radius);
+  padding: 1rem;
 }
 
-/* Firefox */
-input[type=number] {
-  -moz-appearance: textfield;
+/* /////////////// */
+
+body{
+  font-family:var(--ff);
+  color: var(--secondery-clr);
+  /* display: flex;
+  flex-direction: column;
+  justify-content: space-between; */
+}
+
+.header{
+  display: flex;
+  justify-content: center;
+  margin-bottom: var(--large);
+  padding: var(--medium);
+  background-color: var(--main-clr);
+  -webkit-box-shadow: 1px 1px 15px -6px #334A52; 
+  box-shadow: 1px 1px 15px -6px #334A52;
+}
+
+h1.title{
+  color: var(--secondery-clr);
+  font-style: italic;
+}
+
+.main{
+  position: relative;
+  width: fit-content;
+  margin: 25% auto;
+}
+
+.new-game-btn1{
+  margin: var(--medium) auto;
+  font-size: var(--xlarge);
+  width:fit-content;
+}
+
+form{
+  display: flex;
+  flex-direction: column;
+  border: var(--border);
+  border-radius: var(--border-radius);
+  align-items: center;
+  padding: var(--medium);
+  gap: var(--small);
+}
+
+.guess-input-lable{
+  font-size: var(--xlarge);
+  text-align: center;
+}
+
+#guess-input{
+  font-size: var(--xlarge);
+  color: var(--secondery-clr);
+  border: var(--border);
+  border-radius: var(--border-radius);
+  text-align: center;
+}
+
+#guess-input:focus{
+  outline: var(--secondery-border);
 }
 
 #guess-chart{
   display: flex;
   width: fit-content;
-  margin:auto;
-  /* gap: 1rem; */
+  margin: var(--large) auto;
+  gap: var(--small);
 }
 
-.cell{
-  border: 0.2px black solid;
-  border-radius: 6px;
-  padding: 1rem;
+.guess-cell{
+  border-style: dashed;
+}
+p.guess{
+  font-size: var(--xlarge);
 }
 
-h1, 
-form{
-    text-align: center;
-    margin: 50px auto;
-}
-
-#guess-input{
-  border-radius: 6px;
-  border: 0.2px solid black;
+.secret-number-cell{
 }
 
 
 /* The animation code */
-@keyframes slidein {
+@keyframes jump {
   0%{
     transform: translatey(0%);
   }
@@ -154,8 +262,43 @@ div.jump {
   /* width: 100px; */
   /* height: 100px; */
   /* background-color: red; */
-  animation-name: slidein;
+  animation-name: jump;
   animation-duration: 2s;
   animation-iteration-count: 5;
   animation-timing-function: ease-out;
+}
+
+@keyframes slideIn {
+  0%{
+    transform: translatey(0%);
+    opacity: 0.2;
+  }
+  
+  100%{
+    transform: translatey(180%);
+    opacity: 1;
+  }
+}
+
+.slideIn {
+  animation-name: slideIn;
+  animation-duration: 1s;
+  animation-iteration-count:1;
+  animation-fill-mode: forwards;
+}
+
+
+
+
+footer{
+  width: 100%;
+  min-height: 35px;
+  position: fixed;
+  bottom: 0%;
+  display: flex;
+  justify-content:center;
+  align-items: center;
+  /* text-align: center */
+  -webkit-box-shadow: 1px 1px 15px -6px #334A52; 
+  box-shadow: 1px 1px 15px -6px #334A52;
 }

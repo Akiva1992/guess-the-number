@@ -5,34 +5,62 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="./style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap"
+      rel="stylesheet"
+    />
     <title>Guess the Number</title>
   </head>
   <body>
-    <h1>Guess the Number</h1>
-    <form action="" target="" id="guess-form">
-      <label for="guess-input">Enter Your Guess</label>
-      <input
-        type="number"
-        id="guess-input"
-        name="guess-input"
-        min="1"
-        max="10"
-        required
-      />
-      <input type="submit" value="Enter" id="submit-btn" class="btn" />
-      <input type="button" value="New Game" id="new-game-btn1" class="new-game-btn btn" />
+    <div class="header"><h1 class="title">Guess the Number</h1></div>
+    <div class="new-game-btn1">
+        <input
+        type="button"
+        value="New Game"
+        id="new-game-btn1"
+        class="new-game-btn btn"
+          />
+    </div>
+    <div class="main">
+        <form action="" target="" id="guess-form">
+            <label for="guess-input"><span class="guess-input-lable">Enter Your Guess Here</span></label>
+            <input
+            type="number"
+          id="guess-input"
+          name="guess-input"
+          min="1"
+          max="10"
+          required
+          />
+          <div class="form-btns">
+          <input type="submit" value="Enter" id="submit-btn" class="btn" />
+        </div>
     </form>
     <div id="guess-chart">
-      <div class="secret-number-cell cell">?</div>
+        <div class="secret-number-cell cell"><p class="guess">?</p></div>
     </div>
-    <div id="game-over-popup" style="display:none">
-      <h1 class="game-over-msg">Game Over :(</h1>
-      <input type="button" value="New Game" id="new-game-btn2" class="new-game-btn btn" />
-    </div>
-    <div id="win-popup" style="display: none">
-        <h1 class="win-msg">Good Job :)</h1>
-        <input type="button" value="New Game" id="new-game-btn3" class="new-game-btn btn" />
-      </div>
-    <script src="./script.js"></script>
-  </body>
+</div>
+<div id="game-over-popup" class="popup slideIn" style="display: none">
+    <h1 class="game-over-msg">Game Over :(</h1>
+    <input
+    type="button"
+    value="New Game"
+    id="new-game-btn2"
+    class="new-game-btn btn"
+    />
+</div>
+<div id="win-popup" class="popup slideIn" style="display: none">
+    <h1 class="win-msg">Good Job :)</h1>
+    <input
+    type="button"
+    value="New Game"
+    id="new-game-btn3"
+    class="new-game-btn btn"
+    />
+</div>
+<footer>&copy Akiva 2013</footer>
+<script src="./script.js"></script>
+</body>
 </html>

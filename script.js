@@ -27,7 +27,9 @@ const game = (function () {
   }
 
   function getGuess() {
-    let guessInput = document.getElementById("guess-input").value;
+    let guessInput = Number(document.getElementById("guess-input").value);
+    let a = typeof(guessInput)
+    console.log(`get ${a}`)
     return guessInput;
   }
 
@@ -43,16 +45,16 @@ const game = (function () {
   function win(guess) {
     secretNumberCell.innerText=guess
     secretNumberCell.classList.add("jump")
-    winPopup.style.display="block";
+    winPopup.style.display="flex";
   }
 
   function gameOver(guess) {
     console.log("Game Over");
     pushGuess(guess);
-    gameOverPopup.style.display = "block";
+    gameOverPopup.style.display = "flex";
   }
 
-  function renderGuesses(guess) {
+  function renderGuesses() {
     removeCells();
     wrongGuesses.forEach((number) => {
       if (number < secretNumber) {
@@ -67,13 +69,24 @@ const game = (function () {
 
   function pushGuess(guess) {
     if (!wrongGuesses.includes(guess)) {
-      wrongGuesses.push(guess);
-      wrongGuesses.sort();
-      renderGuesses(guess);
+      wrongGuesses.push(Number(guess));
+      wrongGuesses.sort(sortNumbers);
+      console.log(wrongGuesses)
+      renderGuesses();
     }else {
       // const existingCells = document.querySelector("[data-number=guess]")
       let existingCell = document.getElementById(guess);
       existingCell.classList.add("jump")
+    }
+  }
+
+  function sortNumbers(a, b) {
+    if (a > b) {
+      return 1;
+    } else if (b > a) {
+      return -1;
+    } else {
+      return 0;
     }
   }
 
