@@ -182,7 +182,7 @@ h1.title{
   min-width: fit-content;
   max-width: 50vw;
   margin: 25% auto;
-  padding: 2rem;
+  /* padding: 2rem; */
 }
 
 .new-game-btn1{
@@ -201,7 +201,7 @@ form{
   padding: var(--medium);
   gap: var(--small);
   min-height: 200px;
-  /* min-width: fit-content; */
+  min-width: 225px;
 }
 
 .guess-input-lable{
@@ -213,12 +213,16 @@ form{
   font-size: var(--fs-large);
   color: var(--secondery-clr);
   border: var(--border);
+  border-width: 1.9px;
   border-radius: var(--border-radius);
   text-align: center;
+  min-width: 40px ;
+  min-height: 40px;
 }
 
 #guess-input:focus{
   outline: var(--secondery-border);
+  border-width: 1px;
 }
 
 .error{
@@ -299,7 +303,7 @@ p.help-txt{
 #guess-chart{
   display: flex;
   width: fit-content;
-  margin: var(--large) auto;
+  margin: var(--large) auto 0 auto;
   gap: var(--small);
 }
 
