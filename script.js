@@ -13,14 +13,18 @@ const game = (function () {
   const winPopup = document.querySelector("#win-popup");
   const newGameBtns = Array.from(document.querySelectorAll(".new-game-btn"));
   const error = document.querySelector(".error");
+  const helpTxtContainer = document.querySelector(".help-txt-container");
+  const secretCellContainer = document.querySelector(".secret-cell-container");
+  console.log(secretCellContainer)
 
   // Bind Events
   // guessForm.addEventListener("submit", playTurn);
-  guessForm.addEventListener("submit", checkValidety);
+  guessForm.addEventListener("submit", formCheckValidety);
+  guessInput.addEventListener("input", inputCheckValidety);
   newGameBtns.forEach((btn) => btn.addEventListener("click", newGame));
 
 
-  function checkValidety(e){
+  function formCheckValidety(e){
       if (!guessInput.validity.valid) {
         e.preventDefault()
         showError();
@@ -30,6 +34,15 @@ const game = (function () {
         e.preventDefault()
         playTurn();
       }
+  };
+
+  function inputCheckValidety(){
+    if (guessInput.validity.valid){
+      error.textContent = "";
+      error.style.display="none";
+    } else {
+      showError()
+    }
   };
 
   function showError(){
@@ -51,6 +64,7 @@ const game = (function () {
   }
 
   function playTurn() {
+    helpTxtContainer.style.display="none";
     if (counter < 5) {
       let guess = getGuess();
       gameLogic(guess);
@@ -91,7 +105,7 @@ const game = (function () {
     wrongGuesses.forEach((number) => {
       if (number < secretNumber) {
         let newCell = createElements(number);
-        guessChart.insertBefore(newCell, secretNumberCell);
+        guessChart.insertBefore(newCell, secretCellContainer);
       } else if (number > secretNumber) {
         let newCell = createElements(number);
         guessChart.append(newCell);

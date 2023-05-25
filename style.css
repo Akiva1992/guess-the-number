@@ -252,6 +252,40 @@ form{
   margin: auto;
 }
 
+.secret-cell-container{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.lower-txt,
+.higher-txt{
+  font-size: var(--medium);
+}
+
+.secret-number-cell{
+  /* position: relative; */
+  width: fit-content;
+  font-size: var(--xlarge);
+}
+
+.help-txt-container{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.help-txt-arrow{
+  font-size: var(--xlarge);
+  animation: fadeIn 1.5s infinite;
+  animation-direction:alternate-reverse;
+  animation-timing-function: ease-in-out;
+
+}
+p.help-txt{
+  text-align: center;
+}
+
 #guess-chart{
   display: flex;
   width: fit-content;
@@ -261,14 +295,32 @@ form{
 
 .guess-cell{
   border-style: dashed;
+  height: fit-content;
+  margin: auto;
 }
 p.guess{
   font-size: var(--xlarge);
 }
 
-.secret-number-cell{
+
+popup.slideIn {
+  animation-name: slideIn;
+  animation-duration: 1s;
+  animation-iteration-count:1;
+  animation-fill-mode: forwards;
 }
 
+@keyframes slideIn {
+  0%{
+    transform: translatey(0%);
+    opacity: 0.2;
+  }
+  
+  100%{
+    transform: translatey(180%);
+    opacity: 1;
+  }
+}
 
 /* The animation code */
 @keyframes jump {
@@ -306,29 +358,8 @@ div.jump {
   animation-duration: 2s;
   animation-iteration-count: 5;
   animation-timing-function: ease-out;
+  backdrop-filter: blur(10px);
 }
-
-@keyframes slideIn {
-  0%{
-    transform: translatey(0%);
-    opacity: 0.2;
-  }
-  
-  100%{
-    transform: translatey(180%);
-    opacity: 1;
-  }
-}
-
-.slideIn {
-  animation-name: slideIn;
-  animation-duration: 1s;
-  animation-iteration-count:1;
-  animation-fill-mode: forwards;
-}
-
-
-
 
 footer{
   width: 100%;
