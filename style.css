@@ -92,7 +92,10 @@ input[type=number] {
 
   --border-radius:6px;
 
-  --fs-large: clamp(var(--large), calc(var(--large) + 0.5vw), 5rem );
+  --fs-xlarge: clamp(var(--xlarge), calc(var(--xlarge) + 0.5vw), 5rem );
+  --fs-large: clamp(var(--large), calc(var(--large) + 0.5vw), 4rem );
+  --fs-medium: clamp(var(--medium), calc(var(--medium) + 0.5vw), 3rem );
+  --fs-small: clamp(var(--small), calc(var(--small) + 0.5vw), 0.8rem );
 
   --accent-clr: #334a5260;
   --main-clr: #ffffff;
@@ -170,14 +173,16 @@ body{
 
 h1.title{
   color: var(--secondery-clr);
-  font-size: clamp(var(--xlarge), calc(var(--xlarge) + 1vw), 5rem );
+  font-size: var(--fs-xlarge);
   font-style: italic;
 }
 
 .main{
   position: relative;
-  width: fit-content;
+  min-width: fit-content;
+  max-width: 50vw;
   margin: 25% auto;
+  padding: 2rem;
 }
 
 .new-game-btn1{
@@ -196,10 +201,11 @@ form{
   padding: var(--medium);
   gap: var(--small);
   min-height: 200px;
+  /* min-width: fit-content; */
 }
 
 .guess-input-lable{
-  font-size: var(--fs-large);
+  font-size: var(--fs-xlarge);
   text-align: center;
 }
 
@@ -219,7 +225,7 @@ form{
   border: var(--border);
   border-radius: 2px;
   padding: var(--tiny);
-  font-size: var(--large);
+  font-size: calc(var(--fs-small) + 0.1vw);
   animation: fadeIn 1.5s, shake 2s infinite;
   animation-direction: alternate;
   animation-timing-function: ease-in-out;
@@ -245,8 +251,9 @@ form{
 
 .form-btns{
   padding: var(--small) var(--medium);
+  font-size: var(--fs-medium);
   position: absolute;
-  bottom: 5%;
+  bottom: 4%;
 }
 
 #submit-btn{
@@ -261,13 +268,13 @@ form{
 
 .lower-txt,
 .higher-txt{
-  font-size: var(--medium);
+  font-size: var(--fs-small);
 }
 
 .secret-number-cell{
   /* position: relative; */
   width: fit-content;
-  font-size: var(--xlarge);
+  font-size: var(--fs-large);
 }
 
 .help-txt-container{
@@ -277,13 +284,14 @@ form{
 }
 
 .help-txt-arrow{
-  font-size: var(--xlarge);
+  font-size: var(--fs-large);
   animation: fadeIn 1.5s infinite;
   animation-direction:alternate-reverse;
   animation-timing-function: ease-in-out;
 
 }
 p.help-txt{
+  font-size: var(--fs-medium);
   text-align: center;
 }
 
@@ -300,7 +308,7 @@ p.help-txt{
   margin: auto;
 }
 p.guess{
-  font-size: var(--xlarge);
+  font-size: var(--fs-large);
 }
 
 
@@ -385,6 +393,14 @@ footer{
 @media (min-width:615px) {
   .main{
     margin: 8% auto;
+    max-width: 30vw;
+  }
+  form{
+    padding-bottom: 4rem;
+    min-height: 230px;
+  }
+  .form-btns{
+    bottom: 1%;
   }
 }
 
