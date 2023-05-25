@@ -92,6 +92,8 @@ input[type=number] {
 
   --border-radius:6px;
 
+  --fs-large: clamp(var(--large), calc(var(--large) + 0.5vw), 5rem );
+
   --accent-clr: #334a5260;
   --main-clr: #ffffff;
   --secondery-clr: #7DB3C6;
@@ -168,6 +170,7 @@ body{
 
 h1.title{
   color: var(--secondery-clr);
+  font-size: clamp(var(--xlarge), calc(var(--xlarge) + 1vw), 5rem );
   font-style: italic;
 }
 
@@ -179,7 +182,7 @@ h1.title{
 
 .new-game-btn1{
   margin: var(--medium) auto;
-  font-size: var(--xlarge);
+  font-size: var(--fs-large);
   width:fit-content;
 }
 
@@ -196,12 +199,12 @@ form{
 }
 
 .guess-input-lable{
-  font-size: var(--xlarge);
+  font-size: var(--fs-large);
   text-align: center;
 }
 
 #guess-input{
-  font-size: var(--xlarge);
+  font-size: var(--fs-large);
   color: var(--secondery-clr);
   border: var(--border);
   border-radius: var(--border-radius);
