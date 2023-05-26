@@ -92,9 +92,9 @@ input[type=number] {
 
   --border-radius:6px;
 
-  --fs-xlarge: clamp(var(--xlarge), calc(var(--xlarge) + 0.5vw), 5rem );
-  --fs-large: clamp(var(--large), calc(var(--large) + 0.5vw), 4rem );
-  --fs-medium: clamp(var(--medium), calc(var(--medium) + 0.5vw), 3rem );
+  --fs-xlarge: clamp(var(--xlarge), calc(var(--xlarge) + 0.5vw), 3.6rem );
+  --fs-large: clamp(var(--large), calc(var(--large) + 0.5vw), 2.8rem );
+  --fs-medium: clamp(var(--medium), calc(var(--medium) + 0.5vw), 2.6rem );
   --fs-small: clamp(var(--small), calc(var(--small) + 0.5vw), 0.8rem );
 
   --accent-clr: #334a5260;
@@ -129,6 +129,8 @@ input[type=number] {
   left: 0;
   right: 0;
   margin: auto;
+  background-color: var(--main-clr);
+
 
   width: fit-content;
   padding: var(--xlarge);
@@ -158,6 +160,7 @@ body{
 }
 
 .header{
+  background-color: var(--main-clr);
   display: flex;
   justify-content: center;
   margin-bottom: var(--large);
@@ -182,7 +185,7 @@ h1.title{
 
 .new-game-btn1{
   margin: var(--medium) auto;
-  font-size: var(--fs-large);
+  font-size: calc(var(--fs-medium) + 0.2rem);
   width:fit-content;
 }
 
@@ -291,7 +294,7 @@ form{
 
 }
 p.help-txt{
-  font-size: var(--fs-medium);
+  font-size: calc(var(--fs-small) + 0.4rem);
   text-align: center;
 }
 
@@ -369,9 +372,11 @@ div.jump {
 }
 
 footer{
+  background-color: var(--main-clr);
   width: 100%;
   min-height: 35px;
   position: fixed;
+  z-index: 1;
   bottom: 0%;
   display: flex;
   justify-content:center;
@@ -402,6 +407,6 @@ footer{
 
 @media (min-width:1280px) {
   .main{
-    margin: 1% auto;
+    margin: 2% auto;
   }
 }
